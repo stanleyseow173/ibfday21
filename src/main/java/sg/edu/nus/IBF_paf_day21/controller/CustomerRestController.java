@@ -41,7 +41,7 @@ public class CustomerRestController {
         if(Objects.isNull(limit)) limit = "5";
         if(Objects.isNull(offset)) offset = "0";
 
-        List<Customer> customers = customerRepository.getAllCustomer(Integer.parseInt(offset), Integer.parseInt(limit));
+        List<Customer> customers = customerRepository.getAllCustomer(Integer.parseInt(limit), Integer.parseInt(offset));
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
         for(Customer c : customers){

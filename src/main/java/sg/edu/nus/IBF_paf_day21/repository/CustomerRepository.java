@@ -19,11 +19,11 @@ public class CustomerRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Customer> getAllCustomer(Integer offset, Integer limit){
+    public List<Customer> getAllCustomer(Integer limit, Integer offset){
 
         List<Customer> csts = new ArrayList<Customer>();
         
-        SqlRowSet rs = jdbcTemplate.queryForRowSet(SELECT_ALL_CUSTOMERS, offset,limit);
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(SELECT_ALL_CUSTOMERS, limit, offset);
 
         while(rs.next()){
             csts.add(Customer.create(rs));
