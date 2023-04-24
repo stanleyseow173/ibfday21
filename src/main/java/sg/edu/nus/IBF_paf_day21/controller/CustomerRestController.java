@@ -26,7 +26,7 @@ import sg.edu.nus.IBF_paf_day21.model.Order;
 import sg.edu.nus.IBF_paf_day21.repository.CustomerRepository;
 
 @RestController
-@RequestMapping(path="/api/customers", produces= MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path="/api", produces= MediaType.APPLICATION_JSON_VALUE)
 public class CustomerRestController {
     
     CustomerRepository customerRepository;
@@ -35,7 +35,7 @@ public class CustomerRestController {
         this.customerRepository = customerRepository;
     }
 
-    @GetMapping()
+    @GetMapping(path="/customers")
     public ResponseEntity<String> getAllCustomers(@RequestParam(required = false, defaultValue="5") String limit, @RequestParam(required=false, defaultValue="0") String offset){
 
         if(Objects.isNull(limit)) limit = "5";
@@ -57,7 +57,7 @@ public class CustomerRestController {
 
     }
 
-    @GetMapping(path="{customerId}")
+    @GetMapping(path="/customer/{customerId}")
     public ResponseEntity<String> getCustomerById(@PathVariable Integer customerId){
 
         JsonObject result=null;
@@ -79,7 +79,7 @@ public class CustomerRestController {
 
     }
     
-    @GetMapping(path="{customer_id}/orders")
+    @GetMapping(path="/customer/{customer_id}/orders")
     public ResponseEntity<String> getOrdersForCustomer(@PathVariable Integer customer_id){
 
         List<Order> orders = new ArrayList<Order>();
